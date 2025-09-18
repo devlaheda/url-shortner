@@ -13,7 +13,7 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
-app.MapGet("/hello", () =>
+app.MapGet("/", () =>
 {
     return "hello from API";
 })

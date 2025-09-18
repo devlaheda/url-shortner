@@ -1,14 +1,15 @@
 name: Azure Deploy
+
 on:
   push:
-    branches:
-      - main
-      path:
+      branches:
+        - main
+      paths:
         - infarstructure/**
-    pull_reaquest:
-      path:
+  pull_request:
+      paths:
       - infarstructure/**
-    workflow_dispatch:
+  workflow_dispatch:
 permissions:
   id-token: write
   contents: read
@@ -16,23 +17,23 @@ permissions:
 jobs:
   deploy-dev:
     runs-on: ubuntu-latest
-    envirement : development
-    steps : 
+    environment: development
+    steps: 
       - uses: actions/checkout@v4
       - name: Azure login 
         uses: azure/login@v2.1.1
         with:
-          client-id: ${{secrets.AZURE_CLIONT_ID}}
-          tenant-id : ${{secrets.AZURE_TENANT_ID}}
-          subscription-id : ${{secrets.AZURE_SUBSCRIPTION_ID}} 
+          client-id: ${{ secrets.AZURE_CLIONT_ID }}
+          tenant-id : ${{ secrets.AZURE_TENANT_ID }}
+          subscription-id : ${{ secrets.AZURE_SUBSCRIPTION_ID }} 
       - uses: Azure/CLI@v2
         with:
           inlineScript : |
             #!/bin/bash
-            az group create --name ${{vars.RESOURCE_GROUP_NAME}} --location ${{vars.RESOURCE_GROUP_LOCATION}}
+            az group create --name ${{ vars.RESOURCE_GROUP_NAME }} --location ${{ vars.RESOURCE_GROUP_LOCATION }}
             echo "Azure resource group created with success"
       - name : Deploy
         uses : azure/arm-deploy@v2
         with:
-          resourceGroupName : ${{vars.RESSOURCE_GROUP_NAME}}
+          resourceGroupName : ${{ vars.RESSOURCE_GROUP_NAME }}
           template : ./infrastructure/main.bicep

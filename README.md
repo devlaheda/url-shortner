@@ -9,4 +9,7 @@ az login
 ## Deployment with CLI
 ```bash
 az deployment  group create --resource-group yourgroupeName --template-file infrastructure/main.bicep
-````
+```
+## Create Github Role 
+```bash
+az ad sp create-for-rbac -n Github-Actions-SP  --role contributor --scopes /subscriptions/{yourID}  --sdk-auth

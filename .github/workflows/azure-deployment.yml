@@ -5,12 +5,12 @@ on:
       branches:
         - main
       paths:
-        - infarstructure/**
+        - Infarstructure/**
   pull_request:
       branches:
         - main
       paths:
-      - infarstructure/**
+      - Infarstructure/**
   workflow_dispatch:
 permissions:
   id-token: write

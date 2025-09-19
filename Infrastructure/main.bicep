@@ -16,7 +16,7 @@ module apiService 'modules/appservices.bicep' ={
     location:location
     keyVaultName:vault.outputs.name
   }
-  dependsOn:[vault]
+  //dependsOn:[vault]
 }
 module keyVaultRoleAssignment 'secrets/keyVaultRoleAssignment.bicep' = {  
   name: 'keyVaultRoleAssignmentDeployment'
@@ -26,5 +26,5 @@ module keyVaultRoleAssignment 'secrets/keyVaultRoleAssignment.bicep' = {
       apiService.outputs. appServicePrincipalId
     ]
   }
-  dependsOn:[vault , apiService]
+  //dependsOn:[vault , apiService]
 }

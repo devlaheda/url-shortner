@@ -8,3 +8,11 @@ module apiService 'modules/appservices.bicep' ={
     location:location
   }
 }
+
+module vault 'secrets/keyvault.bicep' = {
+  name: 'keyVaultDeployment'
+  params:{
+    name : 'kv-${uniqueId}'
+    location: location    
+  }
+}

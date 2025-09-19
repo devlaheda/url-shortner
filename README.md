@@ -11,5 +11,7 @@ az login
 az deployment  group create --resource-group yourgroupeName --template-file infrastructure/main.bicep
 ```
 ## Create Github Role 
+**github_Actions_Role** :  this is a custom role taht is based on contribitor and added needed permission (permission to manage roles ..) so that the pipeline will run 
+
 ```bash
-az ad sp create-for-rbac -n Github-Actions-SP  --role contributor --scopes /subscriptions/{yourID}  --sdk-auth
+az ad sp create-for-rbac -n Github-Actions-SP  --role github_Actions_Role --scopes /subscriptions/{yourID}  --sdk-auth

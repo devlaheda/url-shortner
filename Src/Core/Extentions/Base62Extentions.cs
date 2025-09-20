@@ -1,4 +1,3 @@
-using System.Text;
 namespace Core.Extentions;
 public static class Base62Extentions
 {

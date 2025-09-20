@@ -4,6 +4,8 @@ namespace Core.Tests;
 
 public class Base62EncodingScenarios
 {
+    // TODO Add Here tests List
+    // 
     [Theory]
     [InlineData(1, "1")]
     [InlineData(197874136, "dog6k")]

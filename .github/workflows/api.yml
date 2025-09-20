@@ -25,7 +25,7 @@ jobs:
     - name: Test
       run: dotnet test --no-build --verbosity normal
     - name: dotnet publish
-      run: dotnet publish Api -c Release -o ${{env.DOTNET_ROOT}}/api
+      run: dotnet publish Src/Api/Api.csproj -c Release -o ${{env.DOTNET_ROOT}}/api
     - name: Upload artifact for deployment
       uses: actions/upload-artifact@v4
       with:

@@ -10,6 +10,6 @@ public class TokenProvider
     public long GetToken()
     {
         //TODO This is just for testing purposes
-        return _tokenRange.start;
+        return _tokenRange.Start;
     }
 }

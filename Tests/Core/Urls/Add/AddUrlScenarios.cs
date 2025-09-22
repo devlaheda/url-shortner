@@ -30,7 +30,7 @@ public class AddUrlScenarios
     {
         var request = CreatAddUrlRequest();
         var response = await _handler.HandleAsync(request, default);
-        var checkIfConatinsKey = _urlDataStore.ContainsKey(response.shortnedUrl);
+        var checkIfConatinsKey = _urlDataStore.ContainsKey(response.Value.shortnedUrl);
         Assert.True(checkIfConatinsKey);
     }
     [Fact]
@@ -38,14 +38,24 @@ public class AddUrlScenarios
     {
         var request = CreatAddUrlRequest();
         var response = await _handler.HandleAsync(request, default);
-        var checkIfConatinsKey = _urlDataStore.ContainsKey(response.shortnedUrl);
+        var checkIfConatinsKey = _urlDataStore.ContainsKey(response.Value.shortnedUrl);
         Assert.True(checkIfConatinsKey);
-        Assert.Equal(_urlDataStore[response.shortnedUrl].CreatedBy, request.CreatedBy);
-        Assert.Equal(_urlDataStore[response.shortnedUrl].CreatedOn, fakeTimeProvider.GetUtcNow());
+        Assert.Equal(_urlDataStore[response.Value.shortnedUrl].CreatedBy, request.CreatedBy);
+        Assert.Equal(_urlDataStore[response.Value.shortnedUrl].CreatedOn, fakeTimeProvider.GetUtcNow());
+    }
+    [Fact]
+    public async Task Should_ReturnError_WhenCreatedByIsNull()
+    {
+        var request = new AddUrlRequest(new Uri("https://github.com"), String.Empty);
+        var response = await _handler.HandleAsync(request, default);
+        Assert.False(response.Suceeded);
+        Assert.NotNull(response.Error);
+        Assert.Equal("missing_value", response.Error.Code);
+        Assert.Equal("Created by is required", response.Error.Description);
     }
 
     private AddUrlRequest CreatAddUrlRequest()
     {
-        return new AddUrlRequest(new Uri("https://github.com"),"devlaheda@github.com");
+        return new AddUrlRequest(new Uri("https://github.com"), "devlaheda@github.com");
     }
 }

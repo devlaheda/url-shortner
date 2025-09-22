@@ -12,7 +12,7 @@ public class Result<T>
 
     public Error Error => _error;
 
-    public bool Suceeded => _isSuccess;
+    public bool Succeeded => _isSuccess;
 
     private Result(T value)
     {

@@ -48,7 +48,7 @@ public class AddUrlScenarios
     {
         var request = new AddUrlRequest(new Uri("https://github.com"), String.Empty);
         var response = await _handler.HandleAsync(request, default);
-        Assert.False(response.Suceeded);
+        Assert.False(response.Succeeded);
         Assert.NotNull(response.Error);
         Assert.Equal("missing_value", response.Error.Code);
         Assert.Equal("Created by is required", response.Error.Description);

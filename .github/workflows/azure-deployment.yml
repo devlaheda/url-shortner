@@ -2,15 +2,13 @@ name: Azure Deploy
 
 on:
   push:
-      branches:
-        - main
+      branches: ["main"]
       paths:
-        - Infarstructure/**
+        - 'Infarstructure/**'
   pull_request:
-      branches:
-        - main
+      branches: ["main"]
       paths:
-      - Infarstructure/**
+        - 'Infarstructure/**'
   workflow_dispatch:
 permissions:
   id-token: write

@@ -28,3 +28,14 @@ module keyVaultRoleAssignment 'secrets/keyVaultRoleAssignment.bicep' = {
   }
   //dependsOn:[vault , apiService]
 }
+module cosmosDb 'modules/cosmosDb.bicep' = {
+  name: 'cosmosDbDeployment'
+  params:{
+    name: 'consmos-db-${uniqueId}'
+    location: location
+    kind: 'GlobalDocumentDB'
+    databaseName:'urls'
+    locationName: 'France Central'
+    keyVaultName: vault.outputs.name
+  }
+}
